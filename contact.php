@@ -1,7 +1,68 @@
 <?php 
     $title='Contact Us';
     $subTitle = 'Contact Us';
-    $css = '<link rel="stylesheet" href="assets/fonts/webfonts/syne/stylesheet.css">'
+    $css = '<link rel="stylesheet" href="assets/fonts/webfonts/syne/stylesheet.css">';
+
+    // Enable error reporting for debugging
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
+    // Handle form submission
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Debug: Log POST data
+        error_log("Form submitted with data: " . print_r($_POST, true));
+
+        $name = isset($_POST['contact-name']) ? $_POST['contact-name'] : '';
+        $email = isset($_POST['contact-email']) ? $_POST['contact-email'] : '';
+        $phone = isset($_POST['contact-phone']) ? $_POST['contact-phone'] : '';
+        $message = isset($_POST['contact-message']) ? $_POST['contact-message'] : '';
+
+        // Validate required fields
+        if (empty($name) || empty($email) || empty($phone) || empty($message)) {
+            $error_message = "Please fill in all required fields.";
+            $response = array('status' => 'error', 'message' => $error_message);
+        } else {
+            $to = "contact@inboxtales.com";
+            $subject = "New Contact Form Submission from " . $name;
+            
+            $email_content = "Name: " . $name . "\n";
+            $email_content .= "Email: " . $email . "\n";
+            $email_content .= "Phone: " . $phone . "\n\n";
+            $email_content .= "Message:\n" . $message;
+
+            $headers = "From: " . $email . "\r\n";
+            $headers .= "Reply-To: " . $email . "\r\n";
+            $headers .= "X-Mailer: PHP/" . phpversion();
+            $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+
+            // Debug: Log email attempt
+            error_log("Attempting to send email to: " . $to);
+            error_log("Email headers: " . $headers);
+            error_log("Email content: " . $email_content);
+
+            // Try to send email
+            $mail_sent = mail($to, $subject, $email_content, $headers);
+            
+            // Debug: Log result
+            error_log("Mail function result: " . ($mail_sent ? "true" : "false"));
+
+            if ($mail_sent) {
+                $success_message = "Thank you for your message. We will get back to you soon!";
+                $response = array('status' => 'success', 'message' => $success_message);
+            } else {
+                $error_message = "Sorry, there was an error sending your message. Please try again later.";
+                $error_message .= " Error: " . error_get_last()['message'];
+                $response = array('status' => 'error', 'message' => $error_message);
+            }
+        }
+
+        // If this is an AJAX request, return JSON response
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            header('Content-Type: application/json');
+            echo json_encode($response);
+            exit;
+        }
+    }
 ?>
 <?php include './partials/layouts/layoutTop.php' ?>
 
@@ -27,30 +88,32 @@
                     </div>
                     <!-- Section Block -->
 
+                    <div id="form-message" class="mb-6 hidden p-4 rounded-lg"></div>
+
                     <!-- Contact Form -->
-                    <form action="https://formspree.io/f/{form_id}" method="post" class="flex flex-col gap-y-6 rounded-[30px] border border-black p-[30px]">
+                    <form id="contact-form" class="flex flex-col gap-y-6 rounded-[30px] border border-black p-[30px]">
                         <!-- Form Group -->
                         <div>
                             <label for="contact-name" class="mb-3 block pl-6 text-base font-bold">Your name</label>
-                            <input type="text" name="contact-name" id="contact-name" class="w-full rounded-[50px] border border-black bg-colorIvory px-8 py-4 text-base font-bold" placeholder="Enter your full name" required />
+                            <input type="text" name="entry.1418881115" id="contact-name" class="w-full rounded-[50px] border border-black bg-colorIvory px-8 py-4 text-base font-bold" placeholder="Enter your full name" required />
                         </div>
                         <!-- Form Group -->
                         <!-- Form Group -->
                         <div>
                             <label for="contact-email" class="mb-3 block pl-6 text-base font-bold">Email Address</label>
-                            <input type="email" name="contact-email" id="contact-email" class="w-full rounded-[50px] border border-black bg-colorIvory px-8 py-4 text-base font-bold" placeholder="Enter your email address" required />
+                            <input type="email" name="entry.1163358052" id="contact-email" class="w-full rounded-[50px] border border-black bg-colorIvory px-8 py-4 text-base font-bold" placeholder="Enter your email address" required />
                         </div>
                         <!-- Form Group -->
                         <!-- Form Group -->
                         <div>
                             <label for="contact-phone" class="mb-3 block pl-6 text-base font-bold">Phone No</label>
-                            <input type="tel" name="contact-phone" id="contact-phone" class="w-full rounded-[50px] border border-black bg-colorIvory px-8 py-4 text-base font-bold" placeholder="+91 XXXXX XXXXX" required />
+                            <input type="tel" name="entry.944497278" id="contact-phone" class="w-full rounded-[50px] border border-black bg-colorIvory px-8 py-4 text-base font-bold" placeholder="+91 XXXXX XXXXX" required />
                         </div>
                         <!-- Form Group -->
                         <!-- Form Group -->
                         <div>
                             <label for="contact-message" class="mb-3 block pl-6 text-base font-bold">Write your message here...</label>
-                            <textarea name="contact-message" id="contact-message" class="min-h-52 w-full rounded-[20px] border border-black bg-colorIvory px-8 py-4 text-base font-bold" placeholder="Tell us about your project requirements"></textarea>
+                            <textarea name="entry.420825078" id="contact-message" class="min-h-52 w-full rounded-[20px] border border-black bg-colorIvory px-8 py-4 text-base font-bold" placeholder="Tell us about your project requirements"></textarea>
                         </div>
                         <!-- Form Group -->
                         <!-- Form Group -->
@@ -77,7 +140,73 @@
     </div>
     <!-- Section Space -->
 </section>
-<!-- ...::: Contact From Section End :::... -->
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Show loading state
+    const submitButton = this.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.innerHTML;
+    submitButton.innerHTML = 'Sending...';
+    submitButton.disabled = true;
+
+    // Get form data
+    const formData = new FormData(this);
+    
+    // Log form submission
+    console.log('Form submission started');
+    console.log('Form data:', {
+        name: this.querySelector('[name="entry.1418881115"]').value,
+        email: this.querySelector('[name="entry.1163358052"]').value,
+        phone: this.querySelector('[name="entry.944497278"]').value,
+        message: this.querySelector('[name="entry.420825078"]').value
+    });
+
+    // Create hidden iframe for form submission
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    // Create form for iframe submission
+    const iframeForm = document.createElement('form');
+    iframeForm.method = 'POST';
+    iframeForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLSfEYIetYpwk6fnFuia7bRJ8f8uKTBltMraD868RSGu0Wv0HHQ/formResponse';
+    iframeForm.target = iframe.name;
+
+    // Add form fields to iframe form
+    formData.forEach((value, key) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = value;
+        iframeForm.appendChild(input);
+    });
+
+    // Submit the form in the iframe
+    iframe.contentDocument.body.appendChild(iframeForm);
+    iframeForm.submit();
+
+    // Show success message
+    const messageDiv = document.getElementById('form-message');
+    messageDiv.classList.remove('hidden');
+    messageDiv.classList.remove('bg-red-100', 'text-red-700');
+    messageDiv.classList.add('bg-green-100', 'text-green-700');
+    messageDiv.textContent = 'Thank you for your message. We will get back to you soon!';
+    
+    // Reset form
+    this.reset();
+    
+    // Reset button state
+    submitButton.innerHTML = originalButtonText;
+    submitButton.disabled = false;
+
+    // Remove iframe after submission
+    setTimeout(() => {
+        document.body.removeChild(iframe);
+    }, 1000);
+});
+</script>
 
 <!-- ...::: Contact Info Section Start :::... -->
 <section class="section-contact-info">
