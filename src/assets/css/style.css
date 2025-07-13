@@ -1172,12 +1172,15 @@ nav.main-menu {
 .hero-title {
     position: relative;
     z-index: 2;
+    font-size: 56px;
+    line-height: 1.2;
+    margin: 20px 0;
 }
 
 .hero-typewriter {
     display: inline-block;
-    min-width: 180px;
-    padding: 0 8px;
+    min-width: 280px;
+    padding: 0 4px;
     overflow: hidden;
     vertical-align: middle;
 }
@@ -1200,16 +1203,11 @@ nav.main-menu {
         max-width: 98vw;
         padding: 0 1rem;
     }
-    .hero-content .dot-shape {
-        right: -40px;
-        top: 60px;
-    }
-    .hero-content .dot-shape img {
-        width: 80px;
+    .hero-title {
+        font-size: 48px;
     }
     .hero-typewriter {
-        min-width: 120px;
-        padding: 0 4px;
+        min-width: 220px;
     }
 }
 
@@ -1218,15 +1216,12 @@ nav.main-menu {
         max-width: 100vw;
         padding: 0 0.5rem;
     }
-    .hero-content .dot-shape {
-        right: 0;
-        top: 40px;
-    }
-    .hero-content .dot-shape img {
-        width: 60px;
+    .hero-title {
+        font-size: 36px;
+        line-height: 1.3;
     }
     .hero-typewriter {
-        min-width: 80px;
+        min-width: 180px;
         padding: 0 2px;
     }
 }

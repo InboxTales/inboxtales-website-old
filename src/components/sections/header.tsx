@@ -27,112 +27,108 @@ const Header = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen)
     }
 
+    // Function to modify menu item text
+    const formatMenuLabel = (label: string) => {
+        return label.replace(' Studies', '\u00A0Studies')
+    }
+
     return (
-        <header className={`modern-header ${isFixed ? "fixed-header" : ""}`}>
-            <div className="header-container">
-                <div className="header-content">
-                    {/* Logo */}
-                    <div className="header-logo">
-                        <Link href="/">
-                            <Image
-                                src="/images/logos/logo.png"
-                                alt="InboxTales Logo"
-                                title="InboxTales"
-                                width={160}
-                                height={48}
-                                className="header-logo-img"
-                            />
-                        </Link>
+        <>
+            {/* Logo outside navbar */}
+            <div className="header-logo-container">
+                <Link href="/">
+                    <Image
+                        src="/images/logos/logo.png"
+                        alt="InboxTales Logo"
+                        title="InboxTales"
+                        width={160}
+                        height={48}
+                        className="header-logo-img"
+                    />
+                </Link>
+            </div>
+
+            {/* Main navigation */}
+            <header className={`modern-header ${isFixed ? "fixed-header" : ""}`}>
+                <div className="header-container">
+                    <div className="header-content">
+                        {/* Desktop Navigation */}
+                        <nav className="desktop-nav">
+                            <ul className="nav-menu">
+                                {menuList.map((item) =>
+                                    item.submenu ? (
+                                        <li key={item.id} className="nav-item dropdown">
+                                            <Link href={item.path || '#'} className="nav-link">
+                                                {formatMenuLabel(item.label)}
+                                                <i className="ri-arrow-down-s-line dropdown-icon"></i>
+                                            </Link>
+                                            <ul className="dropdown-menu">
+                                                {item.submenu.map((sub) => (
+                                                    <li key={sub.id}>
+                                                        <Link href={sub.path || '#'} className="dropdown-link">
+                                                            {formatMenuLabel(sub.label)}
+                                                            <i className="ri-arrow-right-line"></i>
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </li>
+                                    ) : (
+                                        <li key={item.id} className="nav-item">
+                                            <Link href={item.path || '#'} className="nav-link">
+                                                {formatMenuLabel(item.label)}
+                                            </Link>
+                                        </li>
+                                    )
+                                )}
+                            </ul>
+                        </nav>
+
+                        {/* Mobile Menu Toggle */}
+                        <button 
+                            className={`mobile-menu-toggle ${isMobileMenuOpen ? 'active' : ''}`}
+                            onClick={toggleMobileMenu}
+                            aria-label="Toggle mobile menu"
+                        >
+                            <span className="hamburger-line"></span>
+                            <span className="hamburger-line"></span>
+                            <span className="hamburger-line"></span>
+                        </button>
                     </div>
 
-                    {/* Desktop Navigation */}
-                    <nav className="desktop-nav">
-                        <ul className="nav-menu">
+                    {/* Mobile Navigation */}
+                    <div className={`mobile-nav ${isMobileMenuOpen ? 'active' : ''}`}>
+                        <ul className="mobile-nav-menu">
                             {menuList.map((item) =>
                                 item.submenu ? (
-                                    <li key={item.id} className="nav-item dropdown">
-                                        <Link href={item.path || '#'} className="nav-link">
-                                            {item.label}
-                                            <i className="ri-arrow-down-s-line dropdown-icon"></i>
+                                    <li key={item.id} className="mobile-nav-item dropdown">
+                                        <Link href={item.path || '#'} className="mobile-nav-link">
+                                            {formatMenuLabel(item.label)}
+                                            <i className="ri-arrow-down-s-line"></i>
                                         </Link>
-                                        <ul className="dropdown-menu">
+                                        <ul className="mobile-dropdown-menu">
                                             {item.submenu.map((sub) => (
                                                 <li key={sub.id}>
-                                                    <Link href={sub.path || '#'} className="dropdown-link">
-                                                        {sub.label}
-                                                        <i className="ri-arrow-right-line"></i>
+                                                    <Link href={sub.path || '#'} className="mobile-dropdown-link">
+                                                        {formatMenuLabel(sub.label)}
                                                     </Link>
                                                 </li>
                                             ))}
                                         </ul>
                                     </li>
                                 ) : (
-                                    <li key={item.id} className="nav-item">
-                                        <Link href={item.path || '#'} className="nav-link">
-                                            {item.label}
+                                    <li key={item.id} className="mobile-nav-item">
+                                        <Link href={item.path || '#'} className="mobile-nav-link">
+                                            {formatMenuLabel(item.label)}
                                         </Link>
                                     </li>
                                 )
                             )}
                         </ul>
-                    </nav>
-
-                    {/* CTA Button */}
-                    <div className="header-cta">
-                        <Link href="/contact" className="cta-button">
-                            Get Started
-                        </Link>
                     </div>
-
-                    {/* Mobile Menu Toggle */}
-                    <button 
-                        className={`mobile-menu-toggle ${isMobileMenuOpen ? 'active' : ''}`}
-                        onClick={toggleMobileMenu}
-                        aria-label="Toggle mobile menu"
-                    >
-                        <span className="hamburger-line"></span>
-                        <span className="hamburger-line"></span>
-                        <span className="hamburger-line"></span>
-                    </button>
                 </div>
-
-                {/* Mobile Navigation */}
-                <div className={`mobile-nav ${isMobileMenuOpen ? 'active' : ''}`}>
-                    <ul className="mobile-nav-menu">
-                        {menuList.map((item) =>
-                            item.submenu ? (
-                                <li key={item.id} className="mobile-nav-item dropdown">
-                                    <Link href={item.path || '#'} className="mobile-nav-link">
-                                        {item.label}
-                                        <i className="ri-arrow-down-s-line"></i>
-                                    </Link>
-                                    <ul className="mobile-dropdown-menu">
-                                        {item.submenu.map((sub) => (
-                                            <li key={sub.id}>
-                                                <Link href={sub.path || '#'} className="mobile-dropdown-link">
-                                                    {sub.label}
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </li>
-                            ) : (
-                                <li key={item.id} className="mobile-nav-item">
-                                    <Link href={item.path || '#'} className="mobile-nav-link">
-                                        {item.label}
-                                    </Link>
-                                </li>
-                            )
-                        )}
-                        <li className="mobile-nav-item">
-                            <Link href="/contact" className="mobile-cta-button">
-                                Get Started
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </header>
+            </header>
+        </>
     )
 }
 
