@@ -10,14 +10,28 @@ const Hero = () => {
             <div className="container">
                 <div className="row align-items-center">
                     <div className="col-lg-12">
-                        <SlideUp className="hero-content position-relative">
-                            <h3 className="hero-subtitle"><i className="ri-mail-line" />Every inbox is the start of a success story</h3>
-                            <h2 className="hero-title" style={{ display: 'flex', flexDirection: 'column', gap: '0.25em' }}>
-                                <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
+                        <SlideUp className="hero-content position-relative text-center">
+                            <h3 className="hero-subtitle" style={{ letterSpacing: '-0.02em' }}>
+                                <i className="ri-mail-line" />Every inbox is the start of a success story
+                            </h3>
+                            <h2 className="hero-title" style={{ 
+                                letterSpacing: '-0.04em',
+                                fontWeight: '800',
+                                textAlign: 'center'
+                            }}>
+                                <div style={{ 
+                                    display: 'flex', 
+                                    alignItems: 'baseline',
+                                    justifyContent: 'center',
+                                    width: '100%'
+                                }}>
                                     We Craft
-                                    <span className="text-[#fa4616] hero-typewriter" style={{ 
-                                        minWidth: '280px',
-                                        display: 'inline-block'
+                                    <div className="text-[#fa4616] hero-typewriter" style={{ 
+                                        display: 'inline-block',
+                                        letterSpacing: '-0.04em',
+                                        textAlign: 'left',
+                                        marginLeft: '0.5rem',
+                                        minWidth: '280px'
                                     }}>
                                         <Typewriter
                                             options={{
@@ -29,18 +43,19 @@ const Hero = () => {
                                                 ],
                                                 autoStart: true,
                                                 loop: true,
+                                                delay: 75,
+                                                deleteSpeed: 50,
                                             }}
                                         />
-                                    </span>
-                                </div>
-                                <div className="hero-fixed-text">
-                                    That Turn Ideas Into Digital Success Stories
+                                    </div>
                                 </div>
                             </h2>
-                            <p className="hero-description">Build websites, apps & marketing systems that spark business growth — all in one place. Your journey begins the moment we say &#39;hello.&#39;</p>
+                            <p className="hero-description" style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
+                                Build websites, apps & marketing systems that spark business growth — all in one place. 
+                                Your journey begins the moment we say &#39;hello.&#39;
+                            </p>
                             <div className="hero-btns">
                                 <Linkscroll smooth={true} to="contact" className="theme-btn btn-brand">Start Your Story</Linkscroll>
-                                <Linkscroll smooth={true} to="services" className="theme-btn differenct-color btn-brand">View Our Services</Linkscroll>
                             </div>
                         </SlideUp>
                     </div>

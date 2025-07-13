@@ -45,42 +45,69 @@ html {
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-/* Reduce container max-widths for better fit */
-.container {
-  max-width: 1200px;
+/* Typography */
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
-.container-fluid {
-  max-width: 1400px;
+h1, .h1 { 
+  font-size: 3.5rem;
+  font-weight: 800;
 }
 
-/* Compact spacing for sections */
-section {
-  padding: 40px 0;
+h2, .h2 { 
+  font-size: 2.5rem;
+}
+
+h3, .h3 { 
+  font-size: 2rem;
+}
+
+h4, .h4 { 
+  font-size: 1.75rem;
+}
+
+h5, .h5 { 
+  font-size: 1.5rem;
+}
+
+h6, .h6 { 
+  font-size: 1.25rem;
+}
+
+p {
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.6;
+  font-size: 1rem;
 }
 
 /* Responsive font sizing */
 @media (max-width: 768px) {
-  h1, .h1 { font-size: 32px !important; }
-  h2, .h2 { font-size: 16px !important; }
-  h3, .h3 { font-size: 20px !important; }
-  h4, .h4 { font-size: 18px !important; }
-  h5, .h5 { font-size: 14px !important; }
-  h6, .h6 { font-size: 12px !important; }
-  p { font-size: 13px !important; line-height: 20px !important; }
+  h1, .h1 { font-size: 2.5rem !important; }
+  h2, .h2 { font-size: 2rem !important; }
+  h3, .h3 { font-size: 1.75rem !important; }
+  h4, .h4 { font-size: 1.5rem !important; }
+  h5, .h5 { font-size: 1.25rem !important; }
+  h6, .h6 { font-size: 1rem !important; }
+  p { font-size: 0.875rem !important; line-height: 1.5 !important; }
 }
 
 @media (max-width: 480px) {
-  h1, .h1 { font-size: 28px !important; }
-  h2, .h2 { font-size: 14px !important; }
-  h3, .h3 { font-size: 18px !important; }
-  h4, .h4 { font-size: 16px !important; }
-  h5, .h5 { font-size: 13px !important; }
-  h6, .h6 { font-size: 11px !important; }
-  p { font-size: 12px !important; line-height: 18px !important; }
+  h1, .h1 { font-size: 2rem !important; }
+  h2, .h2 { font-size: 1.75rem !important; }
+  h3, .h3 { font-size: 1.5rem !important; }
+  h4, .h4 { font-size: 1.25rem !important; }
+  h5, .h5 { font-size: 1rem !important; }
+  h6, .h6 { font-size: 0.875rem !important; }
+  p { font-size: 0.875rem !important; line-height: 1.4 !important; }
 }
 
 /* Ensure proper viewport handling */

@@ -188,7 +188,7 @@
 
     .desktop-nav {
         display: none;
-    }
+}
 
     .mobile-menu-toggle {
         display: flex;
@@ -203,7 +203,7 @@
 
     .modern-header {
         padding: 0.5rem 1rem;
-    }
+}
 }
 
 /* Mobile Menu Toggle */

@@ -7,48 +7,53 @@
 
 /* Brand Font Classes */
 .font-brand {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: -0.04em;
 }
 
 .font-secondary {
   font-family: 'DM Sans', sans-serif;
+  letter-spacing: -0.02em;
 }
 
 /* Typography Scale with Brand Fonts */
 .brand-heading {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
 }
 
 .brand-heading-light {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 300;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .brand-heading-medium {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 500;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.03em;
 }
 
 .brand-text {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 400;
   line-height: 1.6;
+  letter-spacing: -0.01em;
 }
 
 .brand-text-medium {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 500;
   line-height: 1.5;
+  letter-spacing: -0.02em;
 }
 
 .brand-text-bold {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 700;
   line-height: 1.4;
+  letter-spacing: -0.03em;
 }
 
 /* Secondary Font for Specific Use Cases */
@@ -72,15 +77,15 @@
 
 /* Hero Section Typography */
 .hero-title {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 800;
   font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
 }
 
 .hero-subtitle {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 400;
   font-size: clamp(1.1rem, 2vw, 1.25rem);
   line-height: 1.4;
@@ -88,7 +93,7 @@
 }
 
 .hero-description {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 400;
   font-size: clamp(1rem, 1.5vw, 1.125rem);
   line-height: 1.6;
@@ -96,15 +101,15 @@
 
 /* Section Headings */
 .section-title-brand {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 700;
   font-size: clamp(1.75rem, 3vw, 2.5rem);
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
 }
 
 .section-subtitle-brand {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 400;
   font-size: clamp(1rem, 1.5vw, 1.125rem);
   line-height: 1.4;
@@ -113,55 +118,57 @@
 
 /* Button Typography */
 .btn-brand {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 600;
   letter-spacing: 0.01em;
 }
 
 /* Navigation Typography */
 .nav-brand {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 500;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
 }
 
 /* Card and Content Typography */
 .card-title-brand {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.3;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .card-text-brand {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 400;
   line-height: 1.6;
 }
 
 /* Testimonial Typography */
 .testimonial-text-brand {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 400;
   font-style: italic;
   line-height: 1.7;
+  letter-spacing: -0.01em;
 }
 
 .testimonial-author-brand {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 600;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
 }
 
 /* Footer Typography */
 .footer-brand {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 .footer-text-brand {
-  font-family: 'San Diego', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 400;
 }
 
@@ -182,11 +189,11 @@
 
 /* Font Loading Fallbacks */
 .font-loading {
-  font-family: 'San Diego', 'Arial', sans-serif;
+  font-family: 'DM Sans', Arial, sans-serif;
 }
 
 .font-loading-secondary {
-  font-family: 'DM Sans', 'Arial', sans-serif;
+  font-family: 'DM Sans', Arial, sans-serif;
 }
 
 /* Smooth Font Transitions */
